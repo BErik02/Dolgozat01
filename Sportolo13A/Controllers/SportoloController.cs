@@ -52,5 +52,27 @@ namespace Sportolo13A.Controllers
 
             return Ok(new { message = "Sikeres lekérdezés. Az eredmenyekben levo eredmenyek szama:", osszes = count ,});
         }
+        [HttpGet("eredmenyszamok")]
+        public object GetEredmenyekCountBySportolo(int id)
+        {
+            var connection = new MySqlConnection(ConnectionString);
+            connection.Open();
+            var sql = @"SELECT COUNT(*) AS darab FROM `eredmeny` WHERE `sportoloid`=@id";
+            var cmd = new MySqlCommand(sql, connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            var datareader = cmd.ExecuteReader();
+            object? data = null;
+            if (datareader.Read() == true)
+            {
+                int darab = datareader.GetInt32("darab");
+                data = new { message = "Sikeres lekérdezés", Eredményszáma = darab };
+            }
+            else
+            {
+                data = new { message = "Nincs ilyen sportolo", Eredményszáma = "" };
+            }
+            connection.Close();
+            return data;
+        }
     }
 }
