@@ -106,7 +106,7 @@ namespace Sportolo13A.Controllers
             return new { message = sportolo };
         }
         [HttpDelete]
-        public object DeleteBlogger(int id)
+        public object DeleteEredmeny(int id)
         {
             var connection = new MySqlConnection(ConnectionString);
             connection.Open();
@@ -137,5 +137,7 @@ namespace Sportolo13A.Controllers
             return new { message = "Sikeres frissités", result = updateeredmenyDto };
 
         }
+        
+
     }
 }
