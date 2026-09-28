@@ -38,7 +38,7 @@ namespace Sportolo13A.Controllers
 
 
         }
-        [HttpGet("sportoloevedmenyei")]
+        [HttpGet("sporteredmeny")]
         public object GetSportoloWithEredmenyek(int id)
         {
             var connection = new MySqlConnection(ConnectionString);
